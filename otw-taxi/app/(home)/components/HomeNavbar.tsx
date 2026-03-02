@@ -8,42 +8,26 @@ import {
   NavbarContent,
   NavbarItem,
 } from "@heroui/react";
-
-
-
+import { House, List } from "lucide-react";
 
 export default function HomeNavbar() {
-
   return (
     <Navbar className="max-w-4xl mx-auto drop-shadow-md py-4">
       <NavbarBrand>
-        <p className="font-bold text-inherit">ACME</p>
+        <Link href="#">
+          <Button isIconOnly className="p-2" size="lg">
+            <House size={40} />
+          </Button>
+        </Link>
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link aria-current="page" href="#">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
+
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
+          <Link href="#">
+            <Button isIconOnly className="p-2" size="lg">
+              <List size={40} />
+            </Button>
+          </Link>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
