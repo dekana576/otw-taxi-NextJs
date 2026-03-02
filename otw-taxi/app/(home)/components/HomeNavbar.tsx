@@ -12,20 +12,31 @@ import { House, List } from "lucide-react";
 
 export default function HomeNavbar() {
   return (
-    <Navbar className="max-w-4xl mx-auto drop-shadow-md py-4">
+    <Navbar
+      className="w-full shadow-md"
+      maxWidth="xl"
+    >
       <NavbarBrand>
         <Link href="#">
-          <Button isIconOnly className="p-2" size="lg">
-            <House size={40} />
+          <Button
+            isIconOnly
+            size="lg"
+            className="p-2"
+          >
+            <House className="w-6 h-6 md:w-7 md:h-7" />
           </Button>
         </Link>
       </NavbarBrand>
 
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
+        <NavbarItem>
           <Link href="#">
-            <Button isIconOnly className="p-2" size="lg">
-              <List size={40} />
+            <Button
+              isIconOnly
+              size="lg"
+              className="p-2"
+            >
+              <List className="w-6 h-6 md:w-7 md:h-7" />
             </Button>
           </Link>
         </NavbarItem>
