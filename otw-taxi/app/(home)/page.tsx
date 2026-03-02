@@ -6,8 +6,7 @@ import SearchBar from "./components/SearchBar";
 
 export default function Home() {
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
- 
+    <div className="px-4 sm:px-6 lg:px-8">
       <div className="my-5 md:my-5">
         <Carousel />
       </div>
@@ -18,9 +17,7 @@ export default function Home() {
 
       <Card className="mt-5 md:mt-5">
         <CardHeader className="flex flex-col gap-3">
-          <h1 className="text-2xl md:text-4xl font-bold">
-            Welcome to ACME
-          </h1>
+          <h1 className="text-2xl md:text-4xl font-bold">Welcome to ACME</h1>
           <p className="text-sm md:text-base text-gray-600">
             This is a simple hero unit, a simple jumbotron-style component for
             calling extra attention to featured content or information.
@@ -33,11 +30,7 @@ export default function Home() {
             out within the larger container.
           </p>
 
-          <Button
-            color="primary"
-            variant="flat"
-            className="w-full md:w-auto"
-          >
+          <Button color="primary" variant="flat" className="w-full md:w-auto">
             Learn more
           </Button>
         </CardBody>
