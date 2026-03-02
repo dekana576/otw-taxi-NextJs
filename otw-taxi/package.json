@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroui/react": "^2.8.9",
+    "@tanstack/react-query": "^5.90.21",
     "axios": "^1.13.6",
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.575.0",
