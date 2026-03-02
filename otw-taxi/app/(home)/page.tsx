@@ -54,7 +54,7 @@ export default function Home() {
       <Card className="my-5 md:my-10">
         <CardHeader className="grid grid-cols-2">
           <div className="flex gap-3 m-3">
-            <Button className="bg-[gray] text-white w-full" disabled>
+            <Button className="bg-[black] text-white w-full" isDisabled>
               Motorcycle
             </Button>
             <Button className="bg-[black] text-white w-full">
