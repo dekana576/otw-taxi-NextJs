@@ -19,11 +19,14 @@ import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
+
+
 const base_url =
   "https://22f766af-a68f-4e84-bab4-b02cde04069a.mock.pstmn.io/admin/cars/";
 
 interface Car {
-  car_id: number;
+  car_id: string;
   car_name: string;
   plate_code: string;
   seat: number;
@@ -37,6 +40,7 @@ interface Car {
 
 export default function Home() {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   const {
     data: cars,
@@ -76,7 +80,7 @@ export default function Home() {
             <Button className="bg-[black] text-white w-full" isDisabled>
               Motorcycle
             </Button>
-            <Dropdown>
+            <Dropdown backdrop="opaque">
               <DropdownTrigger>
                 <Button className="bg-black text-white w-full">
                   {seatFilter === "all" ? "All Car" : `Seat ${seatFilter}`}
@@ -94,9 +98,9 @@ export default function Home() {
                   }
                 }}
               >
-                <DropdownItem key="all">All</DropdownItem>
-                <DropdownItem key="5">Seat 5</DropdownItem>
-                <DropdownItem key="7">Seat 7</DropdownItem>
+                <DropdownItem key="all" className="bg-[#5F5F5F] text-white my-1"><strong>All</strong></DropdownItem>
+                <DropdownItem key="5" className="bg-[#5F5F5F] text-white my-1">Seat 5</DropdownItem>
+                <DropdownItem key="7" className="bg-[#5F5F5F] text-white my-1">Seat 7</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -135,7 +139,7 @@ export default function Home() {
                   >
                     Ready
                   </Chip>
-                  <Button className="bg-[black]">
+                  <Button className="bg-[black]" onPress={() => router.push(`/${car.car_id}/detail`)}>
                     <strong className="text-white">Booking</strong>
                   </Button>
                 </CardBody>
