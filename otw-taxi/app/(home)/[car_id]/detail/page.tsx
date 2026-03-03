@@ -4,8 +4,10 @@ import { Button, Card, CardBody, CardHeader, Image } from "@heroui/react";
 import { Car } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function CarDetail() {
+  const router = useRouter();
   const params = useParams();
   const id = params.car_id;
   return (
@@ -31,12 +33,18 @@ export default function CarDetail() {
                     <small className="mt-4">Car ID: {id}</small>
                   </div>
                   <div className="mt-auto grid md:grid-cols-3 gap-2">
-                    <Link href="/">
-                      <Button className="bg-white w-full border-2">
+                    <Button className="bg-white w-full border-2">
+                      <Link href="/">
                         <strong>Close</strong>
-                      </Button>
-                    </Link>
-                    <Button className="bg-black w-full md:col-span-2">
+                      </Link>
+                    </Button>
+
+                    <Button
+                      className="bg-black w-full md:col-span-2"
+                      onPress={() =>
+                        router.push(`/${params.car_id}/detail/order-location`)
+                      }
+                    >
                       <strong className="text-white">Booking</strong>
                     </Button>
                   </div>
@@ -46,7 +54,7 @@ export default function CarDetail() {
             <div className="col-span-2">
               <Card>
                 <CardBody className="h-75">
-                    <div className="text-center">
+                  <div className="text-center">
                     <h1>
                       <strong>Driver</strong>
                     </h1>
