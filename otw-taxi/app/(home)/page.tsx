@@ -1,12 +1,23 @@
 "use client";
 
-import { Button, Card, CardBody, CardHeader, Chip, Image } from "@heroui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Chip,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Image,
+} from "@heroui/react";
 import Carousel from "./components/Carousel";
 import SearchBar from "./components/SearchBar";
-// import ItemCard from "./components/ItemCard";
 import { Car, SlidersHorizontal } from "lucide-react";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 const base_url =
   "https://22f766af-a68f-4e84-bab4-b02cde04069a.mock.pstmn.io/admin/cars/";
@@ -15,6 +26,7 @@ interface Car {
   car_id: number;
   car_name: string;
   plate_code: string;
+  seat: number;
   types: {
     type_name: string;
   };
@@ -25,6 +37,7 @@ interface Car {
 
 export default function Home() {
   const queryClient = useQueryClient();
+
   const {
     data: cars,
     isLoading,
@@ -38,6 +51,12 @@ export default function Home() {
       return response.data.data;
     },
   });
+  const [seatFilter, setSeatFilter] = useState<number | "all">("all");
+  const filteredCars =
+    seatFilter === "all"
+      ? cars
+      : cars?.filter((car) => car.seat === seatFilter);
+
   if (isLoading) return <p>Loading...</p>;
   if (isError) throw error;
 
@@ -57,15 +76,35 @@ export default function Home() {
             <Button className="bg-[black] text-white w-full" isDisabled>
               Motorcycle
             </Button>
-            <Button className="bg-[black] text-white w-full">
-              Car <SlidersHorizontal size={20} />
-            </Button>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button className="bg-black text-white w-full">
+                  {seatFilter === "all" ? "All Car" : `Seat ${seatFilter}`}
+                  <SlidersHorizontal size={20} />
+                </Button>
+              </DropdownTrigger>
+
+              <DropdownMenu
+                aria-label="Seat Filter"
+                onAction={(key) => {
+                  if (key === "all") {
+                    setSeatFilter("all");
+                  } else {
+                    setSeatFilter(Number(key));
+                  }
+                }}
+              >
+                <DropdownItem key="all">All</DropdownItem>
+                <DropdownItem key="5">Seat 5</DropdownItem>
+                <DropdownItem key="7">Seat 7</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </div>
         </CardHeader>
 
         <CardBody>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-2">
-            {cars?.map((car) => (
+            {filteredCars?.map((car) => (
               <Card className="py-4 max-w-2xs" key={car.car_id}>
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
                   <div className="bg-[#5F5F5F] p-8 rounded-3xl">
@@ -88,7 +127,7 @@ export default function Home() {
                       {car.brands.brand_name}
                     </small>
                   </div>
-                  <small className="text-default-500">seat: 5</small>
+                  <small className="text-default-500">seat: {car.seat}</small>
                   <Chip
                     className="bg-[#1CFB6E]/27 text-[#0EA244] my-1"
                     variant="dot"
