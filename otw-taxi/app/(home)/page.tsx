@@ -17,10 +17,10 @@ interface Car {
   plate_code: string;
   types: {
     type_name: string;
-  }
+  };
   brands: {
     brand_name: string;
-  }
+  };
 }
 
 export default function Home() {
@@ -68,7 +68,7 @@ export default function Home() {
             {cars?.map((car) => (
               <Card className="py-4 max-w-2xs" key={car.car_id}>
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
-                  <div className="bg-[#5F5F5F] p-8 rounded-3xl" >
+                  <div className="bg-[#5F5F5F] p-8 rounded-3xl">
                     <Car size={100} className="text-white" />
                   </div>
                 </CardHeader>
@@ -76,12 +76,17 @@ export default function Home() {
                   <p className="text-tiny uppercase font-bold text-center">
                     <strong>{car.car_name}</strong>
                   </p>
-                  <small className="text-default-500 text-center">{car.plate_code}</small>
+                  <small className="text-default-500 text-center">
+                    {car.plate_code}
+                  </small>
                   <div className="grid grid-cols-3 text-center">
-
-                  <small className="text-default-500">{car.types.type_name} </small>
-                  <small>|</small>
-                  <small className="text-default-500">{car.brands.brand_name}</small>
+                    <small className="text-default-500">
+                      {car.types.type_name}{" "}
+                    </small>
+                    <small>|</small>
+                    <small className="text-default-500">
+                      {car.brands.brand_name}
+                    </small>
                   </div>
                   <small className="text-default-500">seat: 5</small>
                   <Chip
