@@ -15,6 +15,7 @@ export default function HomeNavbar() {
     <Navbar
       className="w-full shadow-md"
       maxWidth="xl"
+      isBlurred= {false}
     >
       <NavbarBrand>
         <Link href="#">
