@@ -20,7 +20,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
 import { useRouter } from "next/navigation";
-
+import Loading from "./loading";
 
 const base_url =
   "https://22f766af-a68f-4e84-bab4-b02cde04069a.mock.pstmn.io/admin/cars/";
@@ -61,7 +61,7 @@ export default function Home() {
       ? cars
       : cars?.filter((car) => car.seat === seatFilter);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
   if (isError) throw error;
 
   return (
@@ -98,9 +98,18 @@ export default function Home() {
                   }
                 }}
               >
-                <DropdownItem key="all" className="bg-[#5F5F5F] text-white my-1"><strong>All</strong></DropdownItem>
-                <DropdownItem key="5" className="bg-[#5F5F5F] text-white my-1">Seat 5</DropdownItem>
-                <DropdownItem key="7" className="bg-[#5F5F5F] text-white my-1">Seat 7</DropdownItem>
+                <DropdownItem
+                  key="all"
+                  className="bg-[#5F5F5F] text-white my-1"
+                >
+                  All
+                </DropdownItem>
+                <DropdownItem key="5" className="bg-[#5F5F5F] text-white my-1">
+                  Seat 5
+                </DropdownItem>
+                <DropdownItem key="7" className="bg-[#5F5F5F] text-white my-1">
+                  Seat 7
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -109,39 +118,56 @@ export default function Home() {
         <CardBody>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-2">
             {filteredCars?.map((car) => (
-              <Card className="py-4 max-w-2xs" key={car.car_id}>
+              <Card
+                className="py-4 max-w-2xs h-full flex flex-col"
+                key={car.car_id}
+              >
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
                   <div className="bg-[#5F5F5F] p-8 rounded-3xl">
                     <Car size={100} className="text-white" />
                   </div>
                 </CardHeader>
-                <CardBody className="overflow-visible py-2">
-                  <p className="text-tiny uppercase font-bold text-center">
-                    <strong>{car.car_name}</strong>
-                  </p>
-                  <small className="text-default-500 text-center">
-                    {car.plate_code}
-                  </small>
-                  <div className="grid grid-cols-3 text-center">
-                    <small className="text-default-500">
-                      {car.types.type_name}{" "}
+
+                <CardBody className="overflow-visible py-2 flex flex-col grow">
+                  <div>
+                    <p className="text-tiny uppercase font-bold text-center">
+                      <strong>{car.car_name}</strong>
+                    </p>
+                    <div className="text-center">
+                    <small className="text-default-500 font-bold">
+                      {car.plate_code}
                     </small>
-                    <small>|</small>
-                    <small className="text-default-500">
-                      {car.brands.brand_name}
-                    </small>
+                    </div>
+
+                    <div className="grid grid-cols-3 text-center">
+                      <small className="text-default-500">
+                        {car.types.type_name}
+                      </small>
+                      <small>|</small>
+                      <small className="text-default-500">
+                        {car.brands.brand_name}
+                      </small>
+                    </div>
+
+                    <small className="text-default-500">seat: {car.seat}</small>
                   </div>
-                  <small className="text-default-500">seat: {car.seat}</small>
-                  <Chip
-                    className="bg-[#1CFB6E]/27 text-[#0EA244] my-1"
-                    variant="dot"
-                    color="success"
-                  >
-                    Ready
-                  </Chip>
-                  <Button className="bg-[black]" onPress={() => router.push(`/${car.car_id}/detail`)}>
-                    <strong className="text-white">Booking</strong>
-                  </Button>
+
+                  <div className="mt-auto">
+                    <Chip
+                      className="bg-[#1CFB6E]/27 text-[#0EA244] my-2"
+                      variant="dot"
+                      color="success"
+                    >
+                      Ready
+                    </Chip>
+
+                    <Button
+                      className="bg-black w-full"
+                      onPress={() => router.push(`/${car.car_id}/detail`)}
+                    >
+                      <strong className="text-white">Booking</strong>
+                    </Button>
+                  </div>
                 </CardBody>
               </Card>
             ))}
