@@ -1,6 +1,7 @@
 
 import "../globals.css";
 import HomeNavbar from "./components/HomeNavbar";
+import "leaflet/dist/leaflet.css"
 
 export default function HomeLayout({
   children,
