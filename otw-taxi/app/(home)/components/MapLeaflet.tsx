@@ -1,27 +1,70 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
-import L from "leaflet"
-import "leaflet/dist/leaflet.css"
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { useState } from "react";
 
 // FIX MARKER ICON
-delete (L.Icon.Default.prototype as any)._getIconUrl
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+const pickupIcon = L.icon({
+  iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+});
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  iconUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  shadowUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-})
+const destinationIcon = L.icon({
+  iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+});
 
 interface Props {
-  lat: number
-  lng: number
+  lat: number;
+  lng: number;
+  pickup: L.LatLng | null;
+  destination: L.LatLng | null;
+  setPickup: (latlng: L.LatLng) => void;
+  setDestination: (latlng: L.LatLng) => void;
 }
 
-export default function UserMap({ lat, lng}: Props) {
+function MapClickHandler({
+  pickup,
+  destination,
+  setPickup,
+  setDestination,
+}: any) {
+  useMapEvents({
+    click(e) {
+      if (!pickup) {
+        setPickup(e.latlng);
+      } else if (!destination) {
+        setDestination(e.latlng);
+      } else {
+        // reset kalau dua sudah terisi
+        setPickup(e.latlng);
+        setDestination(null);
+      }
+    },
+  });
+
+  return null;
+}
+
+export default function UserMap({
+  lat,
+  lng,
+  pickup,
+  destination,
+  setPickup,
+  setDestination,
+}: Props) {
   return (
     <MapContainer
       center={[lat, lng]}
@@ -32,10 +75,25 @@ export default function UserMap({ lat, lng}: Props) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
-      <Marker position={[lat, lng]}>
-        <Popup>Tes</Popup>
-      </Marker>
-    </MapContainer>
-  )
-}
 
+      <MapClickHandler
+        pickup={pickup}
+        destination={destination}
+        setPickup={setPickup}
+        setDestination={setDestination}
+      />
+
+      {pickup && (
+        <Marker position={pickup} icon={pickupIcon}>
+    <Popup>Pickup Location</Popup>
+  </Marker>
+      )}
+
+      {destination && (
+        <Marker position={destination} icon={destinationIcon}>
+    <Popup>Destination Location</Popup>
+  </Marker>
+      )}
+    </MapContainer>
+  );
+}
