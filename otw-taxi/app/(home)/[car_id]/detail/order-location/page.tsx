@@ -5,6 +5,9 @@ import L from "leaflet";
 import UserMap from "@/app/(home)/components/MapLeaflet";
 import { Button, Card, CardBody, CardHeader, Input } from "@heroui/react";
 import { ArrowRight, MapPin, Navigation, Phone } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationArrow, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 export default function OrderLocation() {
   const [pickup, setPickup] = useState<L.LatLng | null>(null);
@@ -26,8 +29,8 @@ export default function OrderLocation() {
       <CardBody className="h-150">
         <div className="mx-5">
           <div className="my-2">
-            <div className="flex gap-2 mb-3">
-              <MapPin />
+            <div className="flex gap-2 mb-3 items-center">
+              <FontAwesomeIcon icon={faLocationDot} size="xl"/>
               <p><strong>Pickup Location</strong></p>
             </div>
             <Input
@@ -43,8 +46,8 @@ export default function OrderLocation() {
           </div>
 
           <div className="my-2">
-            <div className="flex gap-2 mb-3">
-              <Navigation />
+            <div className="flex gap-2 mb-3 items-center">
+              <FontAwesomeIcon icon={faLocationArrow} size="xl"/>
               <p><strong>Destination Location</strong></p>
             </div>
             <Input
@@ -60,15 +63,15 @@ export default function OrderLocation() {
           </div>
 
           <div className="my-2">
-            <div className="flex gap-2 mb-3">
-              <Phone />
+            <div className="flex gap-2 mb-3 items-center">
+              <FontAwesomeIcon icon={faWhatsapp} size="xl"/>
               <p><strong>WhatsApp Number</strong></p>
             </div>
             <Input variant="bordered" placeholder="Enter WhatsApp ..." />
           </div>
         </div>
         <div className="mt-auto mx-5">
-          <Card className="bg-linear-to-r from-[#0066CC] to-[#003D80] ">
+          <Card className="bg-linear-to-r from-[#0066CC] to-[#003D80] py-2">
             <CardBody>
               <div className="text-center text-white">
                 <p>Distance: - </p>
