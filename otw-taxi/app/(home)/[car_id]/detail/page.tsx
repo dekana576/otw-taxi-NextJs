@@ -42,7 +42,7 @@ export default function CarDetail() {
                     <Button
                       className="bg-black w-full md:col-span-2"
                       onPress={() =>
-                        router.push(`/${params.car_id}/detail/order-location`)
+                        router.push(`/${params.car_id}/order-location`)
                       }
                     >
                       <strong className="text-white">Booking</strong>
