@@ -24,6 +24,7 @@ import {
   faLocationArrow,
   faLocationDot,
   faRoad,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import UserMap from "../components/MapLeaflet";
 
@@ -57,6 +58,7 @@ export default function Order() {
             tabList:
               "bg-gray-200 p-1 overflow-x-auto scrollbar-hide flex-nowrap",
             tab: "px-3 md:px-9 py-5 md:py-7 text-sm md:text-base",
+            
           }}
         >
           <Tab
@@ -351,7 +353,7 @@ export default function Order() {
                           <FontAwesomeIcon icon={faCarOn} size="xl" />
                         </div>
                         <div className="text-danger">
-                          <FontAwesomeIcon icon={faCheck} size="xl" />
+                          <FontAwesomeIcon icon={faXmark} size="xl"/>
                         </div>
                       </div>
                       <Progress size="sm" value={100} color="danger" />
@@ -359,7 +361,7 @@ export default function Order() {
                         <p>Waiting</p>
                         <p>On The Way</p>
                         <p>To Destination</p>
-                        <p>Complete</p>
+                        <p>Canceled</p>
                       </div>
                     </div>
                   </div>
