@@ -3,7 +3,7 @@
 import { useState } from "react";
 import L from "leaflet";
 import UserMap from "@/app/(home)/components/MapLeaflet";
-import { Button, Card, CardBody, CardHeader, Input } from "@heroui/react";
+import { Button, Card, CardBody, CardHeader, Input, Link } from "@heroui/react";
 import { ArrowRight, MapPin, Navigation, Phone } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow, faLocationDot } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +15,7 @@ export default function OrderLocation() {
 
   return (
     <Card className="my-2 md:my-5">
-      <CardHeader className="h-150">
+      <CardHeader className="">
         <UserMap
           lat={-8.698044107173683}
           lng={115.2438123306259}
@@ -26,8 +26,8 @@ export default function OrderLocation() {
         />
       </CardHeader>
 
-      <CardBody className="h-150">
-        <div className="mx-5">
+      <CardBody>
+        <div className="mx-5 mb-3">
           <div className="my-2">
             <div className="flex gap-2 mb-3 items-center">
               <FontAwesomeIcon icon={faLocationDot} size="xl"/>
@@ -81,6 +81,8 @@ export default function OrderLocation() {
               </div>
             </CardBody>
           </Card>
+          
+          <Link href="/order" className="w-full">
           <Button className="w-full my-2 bg-[#212529] text-white grid grid-cols-3" radius="full">
             <div className=""></div>
             <p>Book Taksol</p>
@@ -88,6 +90,7 @@ export default function OrderLocation() {
               <ArrowRight />
             </div>
           </Button>
+          </Link>
         </div>
       </CardBody>
     </Card>
