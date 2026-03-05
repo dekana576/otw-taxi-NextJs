@@ -18,7 +18,7 @@ export default function HomeNavbar() {
       isBlurred= {false}
     >
       <NavbarBrand>
-        <Link href="#">
+        <Link href="/">
           <Button
             isIconOnly
             size="lg"
@@ -31,7 +31,7 @@ export default function HomeNavbar() {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Link href="#">
+          <Link href="/order">
             <Button
               isIconOnly
               size="lg"
