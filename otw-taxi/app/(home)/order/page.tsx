@@ -272,7 +272,7 @@ export default function Order() {
                       </p>
                     </div>
                     <div className="flex items-center gap-1">
-                      <FontAwesomeIcon icon={faHourglassEnd} />
+                      <FontAwesomeIcon icon={faHourglassEnd} size="xl"/>
                       <p>
                         <strong>Time : </strong>
                       </p>
@@ -395,7 +395,7 @@ export default function Order() {
                       </p>
                     </div>
                     <div className="flex items-center gap-1">
-                      <FontAwesomeIcon icon={faHourglassEnd} />
+                      <FontAwesomeIcon icon={faHourglassEnd} size="xl"/>
                       <p>
                         <strong>Time : </strong>
                       </p>
