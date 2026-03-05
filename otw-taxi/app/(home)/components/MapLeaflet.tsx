@@ -69,7 +69,7 @@ export default function UserMap({
     <MapContainer
       center={[lat, lng]}
       zoom={15}
-      style={{ height: "500px", width: "100%" }}
+      style={{ height: "300px", width: "100%" }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
