@@ -33,6 +33,7 @@ export default function Order() {
   const [pickup, setPickup] = useState<L.LatLng | null>(null);
   const [destination, setDestination] = useState<L.LatLng | null>(null);
 
+
   const getColor = () => {
     if (selected === "active") return "primary";
     if (selected === "completed") return "success";
@@ -41,10 +42,10 @@ export default function Order() {
   };
 
   return (
-    <div className="w-full my-6 px-3">
+    <div className="w-full my-6 px-4 sm:px-6 lg:px-8">
       <div className="justify-center items-center flex flex-col">
         <div className="">
-            <h1 className="font-bold text-3xl my-3">ORDER</h1>
+          <h1 className="font-bold text-3xl my-3 font-[Sora]">ORDER</h1>
         </div>
         <Tabs
           radius="full"
@@ -74,7 +75,7 @@ export default function Order() {
                     <small>Feb, 18, 2026, 2:01 p.m.</small>
                     <Chip color="primary" radius="sm">
                       <div className="flex gap-2">
-                        <Clock className="w-1 h-1 md:w-5 md:h-5" />
+                        <Clock className="w-5 h-5" />
                         <p>active</p>
                       </div>
                     </Chip>
@@ -82,9 +83,10 @@ export default function Order() {
                   <div className="my-6 flex items-center gap-3">
                     <Avatar
                       showFallback
-                      src="https://images.unsplash.com/broken"
+                      src="carousel/image2.png"
                       size="lg"
                       isBordered
+                      color="primary"
                     />
                     <div>
                       <p>
@@ -152,19 +154,22 @@ export default function Order() {
                     </div>
                   </div>
                   <div className="rounded-3xl overflow-hidden">
-
-                  <UserMap
-                    lat={-8.698044107173683}
-                    lng={115.2438123306259}
-                    pickup={pickup}
-                    destination={destination}
-                    setPickup={setPickup}
-                    setDestination={setDestination}
-                  />
+                    <UserMap
+                      lat={-8.698044107173683}
+                      lng={115.2438123306259}
+                      pickup={pickup}
+                      destination={destination}
+                      setPickup={setPickup}
+                      setDestination={setDestination}
+                    />
                   </div>
                   <div className="w-full flex justify-between my-2">
-                    <p><strong>Total : </strong></p>
-                    <p className="text-primary"><strong>$2.64</strong></p>
+                    <p>
+                      <strong>Total : </strong>
+                    </p>
+                    <p className="text-primary">
+                      <strong>$2.64</strong>
+                    </p>
                   </div>
                 </Card>
               </CardBody>
@@ -187,7 +192,7 @@ export default function Order() {
                     <small>Feb, 18, 2026, 2:01 p.m.</small>
                     <Chip color="success" radius="sm">
                       <div className="flex gap-2">
-                        <CircleCheckBig className="w-1 h-1 md:w-5 md:h-5" />
+                        <CircleCheckBig className="w-5 h-5" />
                         <p>completed</p>
                       </div>
                     </Chip>
@@ -195,9 +200,10 @@ export default function Order() {
                   <div className="my-6 flex items-center gap-3">
                     <Avatar
                       showFallback
-                      src="https://images.unsplash.com/broken"
+                      src="carousel/image2.png"
                       size="lg"
                       isBordered
+                      color="success"
                     />
                     <div>
                       <p>
@@ -271,19 +277,22 @@ export default function Order() {
                     </div>
                   </div>
                   <div className="rounded-3xl overflow-hidden">
-
-                  <UserMap
-                    lat={-8.698044107173683}
-                    lng={115.2438123306259}
-                    pickup={pickup}
-                    destination={destination}
-                    setPickup={setPickup}
-                    setDestination={setDestination}
-                  />
+                    <UserMap
+                      lat={-8.698044107173683}
+                      lng={115.2438123306259}
+                      pickup={pickup}
+                      destination={destination}
+                      setPickup={setPickup}
+                      setDestination={setDestination}
+                    />
                   </div>
                   <div className="w-full flex justify-between my-2">
-                    <p><strong>Total : </strong></p>
-                    <p className="text-primary"><strong>$2.64</strong></p>
+                    <p>
+                      <strong>Total : </strong>
+                    </p>
+                    <p className="text-primary">
+                      <strong>$2.64</strong>
+                    </p>
                   </div>
                 </Card>
               </CardBody>
@@ -306,7 +315,7 @@ export default function Order() {
                     <small>Feb, 18, 2026, 2:01 p.m.</small>
                     <Chip color="danger" radius="sm">
                       <div className="flex gap-2">
-                        <XCircle className="w-1 h-1 md:w-5 md:h-5" />
+                        <XCircle className="w-5 h-5" />
                         <p>canceled</p>
                       </div>
                     </Chip>
@@ -314,9 +323,10 @@ export default function Order() {
                   <div className="my-6 flex items-center gap-3">
                     <Avatar
                       showFallback
-                      src="https://images.unsplash.com/broken"
+                      src="carousel/image2.png"
                       size="lg"
                       isBordered
+                      color="danger"
                     />
                     <div>
                       <p>
@@ -390,19 +400,22 @@ export default function Order() {
                     </div>
                   </div>
                   <div className="rounded-3xl overflow-hidden">
-
-                  <UserMap
-                    lat={-8.698044107173683}
-                    lng={115.2438123306259}
-                    pickup={pickup}
-                    destination={destination}
-                    setPickup={setPickup}
-                    setDestination={setDestination}
-                  />
+                    <UserMap
+                      lat={-8.698044107173683}
+                      lng={115.2438123306259}
+                      pickup={pickup}
+                      destination={destination}
+                      setPickup={setPickup}
+                      setDestination={setDestination}
+                    />
                   </div>
                   <div className="w-full flex justify-between my-2">
-                    <p><strong>Total : </strong></p>
-                    <p className="text-primary"><strong>$2.64</strong></p>
+                    <p>
+                      <strong>Total : </strong>
+                    </p>
+                    <p className="text-primary">
+                      <strong>$2.64</strong>
+                    </p>
                   </div>
                 </Card>
               </CardBody>
