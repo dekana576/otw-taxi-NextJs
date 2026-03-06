@@ -13,9 +13,10 @@ import { House, List } from "lucide-react";
 export default function HomeNavbar() {
   return (
     <Navbar
-      className="w-full shadow-md"
+      className="w-full shadow-2xl rounded-2xl"
       maxWidth="xl"
       isBlurred= {false}
+      
     >
       <NavbarBrand>
         <Link href="/">
