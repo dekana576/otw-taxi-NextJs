@@ -14,10 +14,10 @@ import {
 } from "@heroui/react";
 import Carousel from "./components/Carousel";
 import SearchBar from "./components/SearchBar";
-import { Car, SlidersHorizontal } from "lucide-react";
+import { ArrowRightFromLine, Car, ChevronRight, SlidersHorizontal } from "lucide-react";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 import Loading from "./loading";
@@ -62,6 +62,13 @@ export default function Home() {
     seatFilter === "all"
       ? cars
       : cars?.filter((car) => car.seat === seatFilter);
+
+  const [visibleCount, setVisibleCount] = useState<number>(8);
+  const visibleCars = filteredCars?.slice(0, visibleCount);
+
+  useEffect(() => {
+  setVisibleCount(8);
+}, [seatFilter]);
 
   if (isLoading) return <Loading />;
   if (isError) throw error;
@@ -115,17 +122,23 @@ export default function Home() {
               </DropdownMenu>
             </Dropdown>
           </div>
+          <div className="w-full flex justify-end">
+            <Button variant="ghost" className="text-[gray]">
+              View All Car
+              <ChevronRight />
+            </Button>
+            </div>
         </CardHeader>
 
         <CardBody>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-2">
-            {filteredCars?.map((car) => (
+            {visibleCars?.map((car) => (
               <Card
                 className="pb-4 max-w-2xs h-full flex flex-col"
                 key={car.car_id}
               >
                 <CardHeader className="pb-0 pt-2 flex-col items-center">
-                <div className="items-center">
+                  <div className="items-center">
                     <Image
                       src={carImages[car.car_name] || "/car-default.png"}
                       alt={car.car_name}
@@ -133,8 +146,7 @@ export default function Home() {
                       height={100}
                       className="rounded-xl object-cover"
                     />
-                </div>
-
+                  </div>
                 </CardHeader>
 
                 <CardBody className="overflow-visible py-2 flex flex-col grow">
@@ -183,7 +195,17 @@ export default function Home() {
               </Card>
             ))}
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-2"></div>
+          {visibleCount < (filteredCars?.length || 0) && (
+            <div className="flex justify-center mt-6">
+              <Button
+                className="bg-black text-white mb-5"
+                radius="full"
+                onPress={() => setVisibleCount((prev) => prev + 8)}
+              >
+                Load More
+              </Button>
+            </div>
+          )}
         </CardBody>
       </Card>
     </div>
