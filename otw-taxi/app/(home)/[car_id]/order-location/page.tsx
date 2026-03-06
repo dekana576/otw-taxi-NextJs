@@ -14,6 +14,8 @@ export default function OrderLocation() {
   const [destination, setDestination] = useState<L.LatLng | null>(null);
 
   return (
+    <div className="px-4 sm:px-6 lg:px-8">
+
     <Card className="my-2 md:my-5">
       <CardHeader className="">
         <UserMap
@@ -94,5 +96,6 @@ export default function OrderLocation() {
         </div>
       </CardBody>
     </Card>
+    </div>
   );
 }
