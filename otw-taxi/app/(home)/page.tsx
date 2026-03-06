@@ -142,11 +142,11 @@ export default function Home() {
                     <p className="text-tiny uppercase font-bold text-center">
                       <strong>{car.car_name}</strong>
                     </p>
-                    <div className="text-center">
+                    {/* <div className="text-center">
                       <small className="text-default-500 font-bold">
                         {car.plate_code}
                       </small>
-                    </div>
+                    </div> */}
 
                     <div className="grid grid-cols-3 text-center">
                       <small className="text-default-500">
