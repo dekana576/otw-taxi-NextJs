@@ -33,11 +33,11 @@ export default function CarDetail() {
                     <small className="mt-4">Car ID: {id}</small>
                   </div>
                   <div className="mt-auto grid md:grid-cols-3 gap-2">
-                    <Button className="bg-white w-full border-2">
-                      <Link href="/">
+                    <Link href="/">
+                      <Button className="bg-white w-full border-2">
                         <strong>Close</strong>
-                      </Link>
-                    </Button>
+                      </Button>
+                    </Link>
 
                     <Button
                       className="bg-black w-full md:col-span-2"
