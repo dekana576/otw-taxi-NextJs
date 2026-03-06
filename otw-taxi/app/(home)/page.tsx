@@ -165,7 +165,7 @@ export default function Home() {
                       className="bg-black w-full"
                       onPress={() => router.push(`/${car.car_id}/detail`)}
                     >
-                      <strong className="text-white">Booking</strong>
+                      <strong className="text-white font-[Sora]">View Detail</strong>
                     </Button>
                   </div>
                 </CardBody>
