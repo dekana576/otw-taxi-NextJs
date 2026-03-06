@@ -22,6 +22,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "./loading";
 
+import { carImages } from "./components/MappingCarImg";
+
 const base_url =
   "https://22f766af-a68f-4e84-bab4-b02cde04069a.mock.pstmn.io/admin/cars/";
 
@@ -119,13 +121,20 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-2">
             {filteredCars?.map((car) => (
               <Card
-                className="py-4 max-w-2xs h-full flex flex-col"
+                className="pb-4 max-w-2xs h-full flex flex-col"
                 key={car.car_id}
               >
-                <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
-                  <div className="bg-[#5F5F5F] p-8 rounded-3xl">
-                    <Car size={100} className="text-white" />
-                  </div>
+                <CardHeader className="pb-0 pt-2 flex-col items-center">
+                <div className="items-center">
+                    <Image
+                      src={carImages[car.car_name] || "/car-default.png"}
+                      alt={car.car_name}
+                      width={200}
+                      height={100}
+                      className="rounded-xl object-cover"
+                    />
+                </div>
+
                 </CardHeader>
 
                 <CardBody className="overflow-visible py-2 flex flex-col grow">
@@ -134,9 +143,9 @@ export default function Home() {
                       <strong>{car.car_name}</strong>
                     </p>
                     <div className="text-center">
-                    <small className="text-default-500 font-bold">
-                      {car.plate_code}
-                    </small>
+                      <small className="text-default-500 font-bold">
+                        {car.plate_code}
+                      </small>
                     </div>
 
                     <div className="grid grid-cols-3 text-center">
@@ -165,7 +174,9 @@ export default function Home() {
                       className="bg-black w-full"
                       onPress={() => router.push(`/${car.car_id}/detail`)}
                     >
-                      <strong className="text-white font-[Sora]">View Detail</strong>
+                      <strong className="text-white font-[Sora]">
+                        View Detail
+                      </strong>
                     </Button>
                   </div>
                 </CardBody>
