@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import Loading from "./loading";
 
 import { carImages } from "./components/MappingCarImg";
+import { color } from "framer-motion";
 
 const base_url =
   "https://22f766af-a68f-4e84-bab4-b02cde04069a.mock.pstmn.io/admin/cars/";
@@ -122,12 +123,12 @@ export default function Home() {
               </DropdownMenu>
             </Dropdown>
           </div>
-          <div className="w-full flex justify-end">
+          {/* <div className="w-full flex justify-end">
             <Button variant="ghost" className="text-[gray]">
               View All Car
               <ChevronRight />
             </Button>
-            </div>
+            </div> */}
         </CardHeader>
 
         <CardBody>
@@ -145,13 +146,14 @@ export default function Home() {
                       width={200}
                       height={100}
                       className="rounded-xl object-cover"
+                      isZoomed
                     />
                   </div>
                 </CardHeader>
 
                 <CardBody className="overflow-visible py-2 flex flex-col grow">
                   <div>
-                    <p className="text-tiny uppercase font-bold text-center">
+                    <p className="text-tiny uppercase font-bold text-center font-[Sora]">
                       <strong>{car.car_name}</strong>
                     </p>
                     {/* <div className="text-center">
